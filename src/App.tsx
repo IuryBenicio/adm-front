@@ -210,16 +210,19 @@ function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post(`http://localhost:8000/admin/login/`, {
-        userName: userName,
-        senha: senha,
-      });
+      await axios.post(
+        `https://qr-code-base-crista-back-production.up.railway.app/admin/login/`,
+        {
+          userName: userName,
+          senha: senha,
+        }
+      );
 
       setLoading(false);
       setLogado(true);
     } catch (error: unknown) {
       setLoading(false);
-      alert("ou senha ou usuário, estão errados");
+      // alert("ou senha ou usuário, estão errados");
       console.error(error);
     }
   }
@@ -238,7 +241,10 @@ function App() {
       santaCeia: ceia,
     };
     await axios
-      .post(`http://localhost:8000/admin/replaceliturgy/`, postData)
+      .post(
+        `https://qr-code-base-crista-back-production.up.railway.app/admin/replaceliturgy/`,
+        postData
+      )
       .then((response) => {
         alert("Programação salva");
         console.log(response);
@@ -252,7 +258,9 @@ function App() {
   //fetch logout
   async function LogoutFetch() {
     await axios
-      .post(`http://localhost:8000/admin/logout/`)
+      .post(
+        `https://qr-code-base-crista-back-production.up.railway.app/admin/logout/`
+      )
       .then(() => {
         alert("Deslogado com sucesso");
         setLogado(false);
