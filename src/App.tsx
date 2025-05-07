@@ -11,7 +11,7 @@ function App() {
   const [ceia, setCeia] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [logado, setLogado] = useState(false);
+  const [logado, setLogado] = useState(true);
   //inputs
   const [userName, setUserName] = useState("");
   const [senha, setSenha] = useState("");
@@ -19,7 +19,6 @@ function App() {
   const [palavraState, setPalavraState] = useState({
     pregador: "",
     tema: "",
-    subtema: "",
     passagem: "",
   });
 
@@ -61,12 +60,12 @@ function App() {
       palavraState.tema.trim() === "";
 
     // Verifica avisos
-    for (const aviso of avisos) {
-      if (!aviso.titulo?.trim() || !aviso.descrição?.trim()) {
-        camposVazios = true;
-        break;
-      }
-    }
+    // for (const aviso of avisos) {
+    //   if (!aviso.titulo?.trim() || !aviso.descrição?.trim()) {
+    //     camposVazios = true;
+    //     break;
+    //   }
+    // }
 
     // Verifica louvores iniciais
     for (const musica of musicas) {
@@ -77,12 +76,12 @@ function App() {
     }
 
     // Verifica louvores pós-palavra
-    for (const musica of musicasPosPalavra) {
-      if (!musica.nome?.trim() || !musica.cantor?.trim()) {
-        camposVazios = true;
-        break;
-      }
-    }
+    // for (const musica of musicasPosPalavra) {
+    //   if (!musica.nome?.trim() || !musica.cantor?.trim()) {
+    //     camposVazios = true;
+    //     break;
+    //   }
+    // }
 
     // Verifica louvores da ceia (caso ceia esteja ativa)
     if (ceia) {
@@ -236,7 +235,6 @@ function App() {
       louvorCeia: musicasCeia,
       pregador: palavraState.pregador,
       tema: palavraState.tema,
-      subtema: palavraState.subtema,
       versiculo: palavraState.passagem,
       santaCeia: ceia,
     };
@@ -278,7 +276,6 @@ function App() {
     senha,
     palavraState.pregador,
     palavraState.passagem,
-    palavraState.subtema,
     palavraState.tema,
     avisos,
     musicas,
@@ -351,7 +348,7 @@ function App() {
                 Defina a programação de domingo
               </h2>
               <div className="form-input tema">
-                <label htmlFor="tema">Tema</label>
+                <label htmlFor="tema">Tema *</label>
                 <input
                   id="tema"
                   name="tema"
@@ -365,23 +362,8 @@ function App() {
                   }
                 />
               </div>
-              <div className="form-input sub-tema">
-                <label htmlFor="subtema">Sub-tema</label>
-                <input
-                  value={palavraState.subtema}
-                  onChange={(e) =>
-                    setPalavraState((t) => ({
-                      ...t,
-                      subtema: e.target.value,
-                    }))
-                  }
-                  id="subtema"
-                  name="subtema"
-                  type="text"
-                />
-              </div>
               <div className="form-input versículo">
-                <label htmlFor="versiculo">Passagem do tema</label>
+                <label htmlFor="versiculo">Passagem do tema *</label>
                 <input
                   value={palavraState.passagem}
                   onChange={(e) =>
@@ -396,7 +378,7 @@ function App() {
                 />
               </div>
               <div className="form-input pregador mt-3">
-                <label htmlFor="pregador">pregador</label>
+                <label htmlFor="pregador">pregador *</label>
                 <input
                   value={palavraState.pregador}
                   onChange={(e) =>
@@ -412,11 +394,11 @@ function App() {
               </div>
               {/* LOUVORES INICIAIS */}
               <ul className="music-table">
-                <label htmlFor="versiculo">Louvores iniciais </label>
+                <label htmlFor="versiculo">Louvores iniciais *</label>
                 {musicas.map((e) => (
                   <li className="music-item">
                     <div className="form-input card-musica">
-                      nome da música
+                      nome da música *
                       <input
                         className="mb-1 "
                         id="musica"
@@ -427,7 +409,7 @@ function App() {
                           handleChangeMusica(e.id!, "nome", ev.target.value)
                         }
                       />
-                      cantor
+                      cantor *
                       <input
                         id="musica"
                         name="cantor"
@@ -577,11 +559,11 @@ function App() {
               )}
               {/* AVISOS */}
               <ul className="music-table mt-4">
-                <label htmlFor="versiculo">Avisos </label>
+                <label htmlFor="versiculo">Avisos (opcional) </label>
                 {avisos.map((e) => (
                   <li className="music-item">
                     <div className="form-input card-musica">
-                      Título
+                      Título *
                       <input
                         className="mb-1 "
                         id="musica"
@@ -592,7 +574,7 @@ function App() {
                           handleChangeAvisos(e.id!, "titulo", ev.target.value)
                         }
                       />
-                      descrição
+                      descrição*
                       <textarea
                         id="musica"
                         name="descricao"

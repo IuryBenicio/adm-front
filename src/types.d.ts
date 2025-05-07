@@ -22,12 +22,11 @@ type avisosType = {
 type apiLiturgy = {
   id?: number;
   tema: string;
-  subtema?: string;
   versiculo: string;
   louvoresIniciais: initialMusicArray[];
   pregador: string;
-  louvorPosPalavra: initialMusicArray[];
+  louvorPosPalavra?: initialMusicArray[];
   santaCeia?: boolean;
   louvorCeia?: initialMusicArray[];
-  avisos: avisosType[];
+  avisos?: avisosType[];
 };
