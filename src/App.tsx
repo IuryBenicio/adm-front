@@ -11,7 +11,7 @@ function App() {
   const [ceia, setCeia] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [logado, setLogado] = useState(true);
+  const [logado, setLogado] = useState(false);
   //inputs
   const [userName, setUserName] = useState("");
   const [senha, setSenha] = useState("");
@@ -209,13 +209,10 @@ function App() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post(
-        `https://qr-code-base-crista-back-production.up.railway.app/admin/login/`,
-        {
-          userName: userName,
-          senha: senha,
-        }
-      );
+      await axios.post(`https://adm-back.fly.dev/admin/login/`, {
+        userName: userName,
+        senha: senha,
+      });
 
       setLoading(false);
       setLogado(true);
@@ -239,10 +236,7 @@ function App() {
       santaCeia: ceia,
     };
     await axios
-      .post(
-        `https://qr-code-base-crista-back-production.up.railway.app/admin/replaceliturgy/`,
-        postData
-      )
+      .post(`https://adm-back.fly.dev/admin/replaceliturgy/`, postData)
       .then((response) => {
         alert("Programação salva");
         console.log(response);
@@ -256,9 +250,7 @@ function App() {
   //fetch logout
   async function LogoutFetch() {
     await axios
-      .post(
-        `https://qr-code-base-crista-back-production.up.railway.app/admin/logout/`
-      )
+      .post(`https://adm-back.fly.dev/admin/logout/`)
       .then(() => {
         alert("Deslogado com sucesso");
         setLogado(false);
