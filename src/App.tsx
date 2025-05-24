@@ -11,7 +11,7 @@ function App() {
   const [ceia, setCeia] = useState(false);
   const [submit, setSubmit] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [logado, setLogado] = useState(false);
+  const [logado, setLogado] = useState(true);
   //inputs
   const [userName, setUserName] = useState("");
   const [senha, setSenha] = useState("");
